@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fix</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="fix-overlay" class="fix-overlay">
+    <div class="fix-system">
+      <div class="orbital-ring ring-1"></div>
+      <div class="orbital-ring ring-2"></div>
+      <div class="orbital-ring ring-3"></div>
+      <div class="core-energy"></div>
+      <div class="fix-text-wrapper">
+        <h1 class="fix-title" data-text="fix">FIX</h1>
+        <div class="scan-line"></div>
+      </div>
+      <div class="system-status">
+        <span class="status-dot"></span>
+        <span class="status-text">ACTIVANDO RED NEURONAL...</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="particles-js" class="particles-container"></div>
+
+  <div class="cosmos-background">
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="stars"></div>
+    <div class="warp-speed"></div>
+  </div>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">
+          <div class="atom-container" id="ai-avatar">
+            <div class="electron e1"></div>
+            <div class="electron e2"></div>
+            <div class="electron e3"></div>
+            <div class="nucleus"></div>
+          </div>
+          <span class="brand-text">Fix <span class="version">AI</span></span>
+        </div>
+        <button class="btn-new-chat magnetic-btn" id="btn-new-chat">
+          <i class="fas fa-plus"></i> <span>Nueva Consulta</span>
+        </button>
+      </div>
+
+      <div class="sidebar-menu">
+        <div class="menu-label">Línea De Consultas</div>
+        <div class="chat-item active magnetic-btn" id="btn-current-consulta">
+          <i class="fas fa-wave-square"></i> Consulta Actual
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="voice-toggle-container">
+          <label class="voice-switch">
+            <input type="checkbox" id="voice-toggle">
+            <span class="slider-voice">
+              <i class="fas fa-microphone-slash off"></i>
+              <i class="fas fa-microphone on"></i>
+            </span>
+          </label>
+          <span class="voice-label">Voz Neuronal</span>
+        </div>
+
+        <div class="user-profile magnetic-btn" id="user-profile-btn">
+          <div class="avatar-glow">
+            <div class="avatar">U</div>
+          </div>
+          <div class="user-info">
+            <span class="name" id="user-name">Iniciando...</span>
+          </div>
+          <i class="fas fa-chevron-up toggle-icon"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="chat-area">
+      <div class="mobile-header d-md-none">
+        <span class="mobile-brand">Fix</span>
+        <button class="btn-mobile-menu"><i class="fas fa-bars"></i></button>
+      </div>
+
+      <div class="messages-container" id="messages-container">
+        <div class="empty-state" id="empty-state">
+          <div class="atom-container big-atom" data-tilt>
+            <div class="electron e1"></div>
+            <div class="electron e2"></div>
+            <div class="electron e3"></div>
+            <div class="nucleus"></div>
+          </div>
+          <h2>Fix - Procesos Inteligentes</h2>
+          <p>¿En que puedo ayudarte en el día de hoy?</p>
+
+          <div class="suggestion-grid">
+            <button class="suggestion-card magnetic-btn" data-tilt onclick="ChatUI.setInput('Analiza este código...')">
+              <div class="icon-glow"><i class="fas fa-code"></i></div>
+              <div class="text">Análisis de Código</div>
+            </button>
+            <button class="suggestion-card magnetic-btn" data-tilt
+              onclick="ChatUI.setInput('Activa protocolo Hyperdrive')">
+              <div class="icon-glow"><i class="fas fa-meteor"></i></div>
+              <div class="text">Protocolo Hyperdrive</div>
+            </button>
+            <button class="suggestion-card magnetic-btn" data-tilt onclick="ChatUI.setInput('Estrategia global...')">
+              <div class="icon-glow"><i class="fas fa-chess"></i></div>
+              <div class="text">Estrategia</div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-area-wrapper">
+        <div class="input-glass-container" data-tilt data-tilt-max="2" data-tilt-speed="400">
+          <textarea id="chat-input" rows="1" placeholder="Escribe tu consulta o ídea..."></textarea>
+          <button id="send-btn" class="btn-send magnetic-btn" disabled>
+            <i class="fas fa-arrow-up"></i>
+          </button>
+        </div>
+        <div class="disclaimer">Fix AI - Estamos para ayudarte</div>
+      </div>
+    </main>
+  </div>
+
+  <div class="user-menu-popover" id="user-menu">
+    <button onclick="App.logout()"><i class="fas fa-power-off"></i>Cerrar sesión</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+
+  <script src="firebase-config.js"></script>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
