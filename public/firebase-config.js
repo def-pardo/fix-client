@@ -8,7 +8,6 @@ const firebaseConfig = {
     measurementId: "G-49GKZZ4FGD"
 };
 
-// Verificar que los SDKs estén cargados antes de inicializar
 if (typeof firebase !== 'undefined') {
     firebase.initializeApp(firebaseConfig);
     console.log("Firebase Inicializado");

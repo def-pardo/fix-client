@@ -1,146 +1,237 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-full">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fix</title>
+  <title>Fix | Workspace</title>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
-
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css">
   <link href="styles.css" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            void: '#000000',
+            sidebar: 'rgba(5, 5, 5, 0.7)',
+            glass: 'rgba(255, 255, 255, 0.03)',
+            'glass-border': 'rgba(255, 255, 255, 0.1)',
+            primary: '#00e5ff',
+            secondary: '#7c4dff'
+          },
+          backgroundImage: {
+            'conic-gradient': 'conic-gradient(var(--tw-gradient-stops))',
+          },
+          boxShadow: {
+            'glow': '0 0 10px rgba(0, 229, 255, 0.1)',
+          },
+          animation: {
+            'spin-slow': 'spin 3s linear infinite',
+            'reverse-spin': 'spin 4s linear infinite reverse',
+            'shimmer': 'shimmer 2s infinite linear',
+          },
+          keyframes: {
+            shimmer: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(100%)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
 </head>
 
-<body>
+<body class="h-full bg-void text-slate-200 overflow-hidden antialiased selection:bg-primary/30 selection:text-white">
 
-  <div id="fix-overlay" class="fix-overlay">
-    <div class="fix-system">
-      <div class="orbital-ring ring-1"></div>
-      <div class="orbital-ring ring-2"></div>
-      <div class="orbital-ring ring-3"></div>
-      <div class="core-energy"></div>
-      <div class="fix-text-wrapper">
-        <h1 class="fix-title" data-text="fix">FIX</h1>
-        <div class="scan-line"></div>
+  <div id="fix-overlay"
+    class="fixed inset-0 z-[100] bg-void flex items-center justify-center transition-opacity duration-1000">
+
+    <div class="relative w-full max-w-lg flex flex-col items-center justify-center p-12">
+
+      <div class="relative w-40 h-40 flex items-center justify-center mb-10">
+        <div class="absolute inset-0 rounded-full border border-white/10"></div>
+
+        <div class="absolute inset-0 rounded-full animate-spin-slow">
+          <div
+            class="h-full w-full rounded-full bg-conic-gradient from-transparent via-transparent to-primary opacity-90"
+            style="mask-image: radial-gradient(transparent 65%, black 66%); -webkit-mask-image: radial-gradient(transparent 65%, black 66%);">
+          </div>
+        </div>
+
+        <div class="absolute inset-4 rounded-full animate-reverse-spin">
+          <div
+            class="h-full w-full rounded-full border-t border-l border-white/30 border-r-transparent border-b-transparent rotate-45">
+          </div>
+        </div>
+
+        <div
+          class="relative z-10 flex flex-col items-center justify-center bg-black rounded-full w-28 h-28 border border-white/10">
+          <h1 class="text-4xl font-bold tracking-tighter text-white">FIX</h1>
+        </div>
       </div>
-      <div class="system-status">
-        <span class="status-dot"></span>
-        <span class="status-text">ACTIVANDO RED NEURONAL...</span>
+
+      <div class="flex flex-col items-center gap-2">
+        <div class="text-[10px] font-mono text-primary/80 uppercase tracking-[0.3em] animate-pulse">
+          Cargando Entorno De Trabajo...
+        </div>
+        <div class="w-24 h-[1px] bg-white/10 mt-2 overflow-hidden relative">
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-transparent via-primary to-transparent w-1/2 animate-shimmer">
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 
-  <div id="particles-js" class="particles-container"></div>
+  <div id="particles-js" class="absolute inset-0 z-0 opacity-20 pointer-events-none"></div>
 
-  <div class="cosmos-background">
-    <div class="nebula nebula-1"></div>
-    <div class="nebula nebula-2"></div>
-    <div class="stars"></div>
-    <div class="warp-speed"></div>
-  </div>
+  <div class="relative z-10 flex h-full">
 
-  <div class="app-layout">
-    <aside class="sidebar">
-      <div class="sidebar-top">
-        <div class="brand">
-          <div class="atom-container" id="ai-avatar">
-            <div class="electron e1"></div>
-            <div class="electron e2"></div>
-            <div class="electron e3"></div>
-            <div class="nucleus"></div>
+    <aside
+      class="w-[280px] h-full flex flex-col bg-sidebar backdrop-blur-md border-r border-glass-border transition-all duration-300 transform md:translate-x-0 absolute md:relative z-50 -translate-x-full"
+      id="main-sidebar">
+
+      <div class="p-6 pb-4">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="relative w-8 h-8 flex items-center justify-center" id="ai-avatar">
+            <div class="absolute inset-0 border border-white/20 rounded-full animate-[spin_4s_linear_infinite]"></div>
+            <div
+              class="absolute inset-0 border border-primary/40 rounded-full w-full h-full rotate-45 animate-[spin_6s_linear_infinite_reverse]">
+            </div>
+            <div class="w-2 h-2 bg-white rounded-full"></div>
           </div>
-          <span class="brand-text">Fix <span class="version">AI</span></span>
+          <span class="font-bold text-xl tracking-tight text-white">Fix <span
+              class="text-[0.6rem] px-1.5 py-0.5 border border-primary/30 text-primary rounded ml-1 align-middle">AI</span></span>
         </div>
-        <button class="btn-new-chat magnetic-btn" id="btn-new-chat">
-          <i class="fas fa-plus"></i> <span>Nueva Consulta</span>
+
+        <button id="btn-new-chat"
+          class="group w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-glass-border hover:border-white/20 text-sm font-medium py-3 rounded-lg transition-all duration-200 magnetic-btn">
+          <i class="fas fa-plus text-primary text-xs transition-transform group-hover:rotate-90"></i>
+          <span>Nueva Consulta</span>
         </button>
       </div>
 
-      <div class="sidebar-menu">
-        <div class="menu-label">Línea De Consultas</div>
-        <div class="chat-item active magnetic-btn" id="btn-current-consulta">
-          <i class="fas fa-wave-square"></i> Consulta Actual
+      <div class="flex-1 px-4 overflow-y-auto custom-scrollbar">
+        <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2">Línea de Consultas</div>
+        <div id="btn-current-consulta"
+          class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary/10 border border-primary/20 text-white cursor-pointer transition-all hover:bg-primary/20 magnetic-btn active">
+          <i class="fas fa-wave-square text-primary text-sm"></i>
+          <span class="text-sm font-medium">Consulta Actual</span>
         </div>
       </div>
 
-      <div class="sidebar-footer">
-        <div class="voice-toggle-container">
-          <label class="voice-switch">
-            <input type="checkbox" id="voice-toggle">
-            <span class="slider-voice">
-              <i class="fas fa-microphone-slash off"></i>
-              <i class="fas fa-microphone on"></i>
-            </span>
+      <div class="p-4 border-t border-glass-border mt-auto">
+        <div class="flex items-center justify-between mb-4 px-2">
+          <span class="text-xs text-slate-400 font-medium">Dictado Por Voz</span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="voice-toggle" class="sr-only peer">
+            <div
+              class="w-9 h-5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary">
+            </div>
           </label>
-          <span class="voice-label">Voz Neuronal</span>
         </div>
 
-        <div class="user-profile magnetic-btn" id="user-profile-btn">
-          <div class="avatar-glow">
-            <div class="avatar">U</div>
+        <div id="user-profile-btn"
+          class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition-colors magnetic-btn group relative">
+          <div
+            class="w-8 h-8 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 border border-white/10 flex items-center justify-center text-xs font-bold text-white avatar">
+            U
           </div>
-          <div class="user-info">
-            <span class="name" id="user-name">Iniciando...</span>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium text-white truncate" id="user-name">Usuario</p>
+            <p class="text-[10px] text-slate-400 truncate">En línea</p>
           </div>
-          <i class="fas fa-chevron-up toggle-icon"></i>
+          <i class="fas fa-chevron-up text-xs text-slate-500 group-hover:text-white transition-colors"></i>
+
+          <div id="user-menu"
+            class="hidden absolute bottom-full left-0 w-full mb-2 bg-[#0F0F12] border border-glass-border rounded-xl shadow-2xl overflow-hidden backdrop-blur-2xl">
+            <button onclick="App.logout()"
+              class="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 transition-colors text-left">
+              <i class="fas fa-power-off"></i> Cerrar sesión
+            </button>
+          </div>
         </div>
       </div>
     </aside>
 
-    <main class="chat-area">
-      <div class="mobile-header d-md-none">
-        <span class="mobile-brand">Fix</span>
-        <button class="btn-mobile-menu"><i class="fas fa-bars"></i></button>
+    <main class="flex-1 flex flex-col relative h-full w-full">
+
+      <div
+        class="md:hidden flex items-center justify-between p-4 border-b border-glass-border bg-black/80 backdrop-blur-md sticky top-0 z-40">
+        <span class="font-bold text-lg text-white">Fix</span>
+        <button class="text-slate-400 hover:text-white"
+          onclick="document.querySelector('#main-sidebar').classList.toggle('-translate-x-full')">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
       </div>
 
-      <div class="messages-container" id="messages-container">
-        <div class="empty-state" id="empty-state">
-          <div class="atom-container big-atom" data-tilt>
-            <div class="electron e1"></div>
-            <div class="electron e2"></div>
-            <div class="electron e3"></div>
-            <div class="nucleus"></div>
-          </div>
-          <h2>Fix - Procesos Inteligentes</h2>
-          <p>¿En que puedo ayudarte en el día de hoy?</p>
+      <div id="messages-container" class="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 scroll-smooth custom-scrollbar">
 
-          <div class="suggestion-grid">
-            <button class="suggestion-card magnetic-btn" data-tilt onclick="ChatUI.setInput('Analiza este código...')">
-              <div class="icon-glow"><i class="fas fa-code"></i></div>
-              <div class="text">Análisis de Código</div>
+        <div id="empty-state"
+          class="h-full flex flex-col items-center justify-center max-w-2xl mx-auto text-center animate-fade-in-up">
+
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Fix Procesos Eficientes</h2>
+          <p class="text-slate-500 mb-12 max-w-md">Sistema de procesos listo.</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+            <button onclick="ChatUI.setInput('Analiza este código...')"
+              class="group p-4 rounded-xl bg-white/5 border border-white/5 hover:border-primary/50 transition-all text-left magnetic-btn">
+              <i class="fas fa-code text-primary mb-3 text-xl block"></i>
+              <span class="text-sm font-medium text-slate-200">Análisis de Código</span>
             </button>
-            <button class="suggestion-card magnetic-btn" data-tilt
-              onclick="ChatUI.setInput('Activa protocolo Hyperdrive')">
-              <div class="icon-glow"><i class="fas fa-meteor"></i></div>
-              <div class="text">Protocolo Hyperdrive</div>
+            <button onclick="ChatUI.setInput('Activa protocolo Hyperdrive')"
+              class="group p-4 rounded-xl bg-white/5 border border-white/5 hover:border-secondary/50 transition-all text-left magnetic-btn">
+              <i class="fas fa-meteor text-secondary mb-3 text-xl block"></i>
+              <span class="text-sm font-medium text-slate-200">Protocolo Hyperdrive</span>
             </button>
-            <button class="suggestion-card magnetic-btn" data-tilt onclick="ChatUI.setInput('Estrategia global...')">
-              <div class="icon-glow"><i class="fas fa-chess"></i></div>
-              <div class="text">Estrategia</div>
+            <button onclick="ChatUI.setInput('Estrategia global...')"
+              class="group p-4 rounded-xl bg-white/5 border border-white/5 hover:border-emerald-400/50 transition-all text-left magnetic-btn">
+              <i class="fas fa-chess text-emerald-400 mb-3 text-xl block"></i>
+              <span class="text-sm font-medium text-slate-200">Estrategia</span>
             </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div
+        class="p-4 md:p-6 pb-6 md:pb-8 flex justify-center bg-gradient-to-t from-black via-black to-transparent z-30">
+        <div class="w-full max-w-4xl relative group" data-tilt data-tilt-max="1" data-tilt-speed="1000">
+          <div
+            class="absolute -inset-0.5 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 blur">
+          </div>
+          <div class="relative flex items-end gap-3 bg-[#0a0a0a] border border-white/10 rounded-2xl p-3">
+            <textarea id="chat-input" rows="1" placeholder="Escribe tu consulta o idea..."
+              class="w-full bg-transparent border-none text-slate-200 placeholder-slate-600 text-base focus:ring-0 resize-none max-h-[200px] py-3 px-2 custom-scrollbar"></textarea>
+
+            <button id="send-btn" disabled
+              class="mb-1 p-3 rounded-xl bg-white text-black disabled:bg-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed transition-all hover:scale-105 active:scale-95 magnetic-btn">
+              <i class="fas fa-arrow-up"></i>
+            </button>
+          </div>
+          <div class="text-center mt-3">
+            <span class="text-[10px] text-slate-700 uppercase tracking-widest">Fix AI // Estamos Para Ayudarte Y
+              Acompañarte</span>
           </div>
         </div>
       </div>
 
-      <div class="input-area-wrapper">
-        <div class="input-glass-container" data-tilt data-tilt-max="2" data-tilt-speed="400">
-          <textarea id="chat-input" rows="1" placeholder="Escribe tu consulta o ídea..."></textarea>
-          <button id="send-btn" class="btn-send magnetic-btn" disabled>
-            <i class="fas fa-arrow-up"></i>
-          </button>
-        </div>
-        <div class="disclaimer">Fix AI - Estamos para ayudarte</div>
-      </div>
     </main>
-  </div>
-
-  <div class="user-menu-popover" id="user-menu">
-    <button onclick="App.logout()"><i class="fas fa-power-off"></i>Cerrar sesión</button>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -153,7 +244,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
 
   <script src="firebase-config.js"></script>
-
   <script src="app.js"></script>
 </body>
 
